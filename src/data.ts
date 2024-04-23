@@ -22,10 +22,10 @@ export const generateData = ():DataObject => {
 
   const generateChildren = (): { name: string; size: number }[] => {
     const children: { name: string; size: number }[] = [];
-    const numChildren = Math.floor(Math.random() * 5) + 1; // Random number of children (1 to 5)
+    const numChildren = Math.floor(Math.random() * 50) + 1;
     for (let i = 0; i < numChildren; i++) {
       const childName = getRandomName();
-      const childSize = Math.floor(Math.random() * 10000) + 1000; // Random size (1000 to 10000)
+      const childSize = Math.floor(Math.random() * 10000) + 1000;
       children.push({ name: childName, size: childSize });
     }
     return children;
