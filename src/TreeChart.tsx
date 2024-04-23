@@ -1,11 +1,10 @@
 import { useRef, useEffect, RefObject } from 'react';
 import * as d3 from "d3";
-import data from './flare.json';
+import { generateData } from './data';
 
 const TreeChart = () => {
   const svgRef: RefObject<SVGSVGElement> = useRef(null);
-
-  useEffect(() => {
+  const init = (data: any) => {
     const width: number = 640;
     const root = d3.hierarchy(data);
     const dx: number = 10;
@@ -65,7 +64,19 @@ const TreeChart = () => {
       .text((d) => d.data.name)
       .attr('stroke', 'white')
       .attr('paint-order', 'stroke');
-  }, [data]);
+  }
+
+  useEffect(() => {
+    const data = []
+    for (let i = 0; i < 60; i++) {
+      const value = generateData();
+      data.push(value)
+    }
+    init({
+      name: "flare",
+      children: data
+    })
+  }, []);
 
   return <svg ref={svgRef}></svg>;
 };
