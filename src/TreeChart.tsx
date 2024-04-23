@@ -68,14 +68,25 @@ const TreeChart = () => {
 
   useEffect(() => {
     const data = []
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 6000; i++) {
       const value = generateData();
       data.push(value)
     }
+    console.log('data', data);
+
     init({
       name: "flare",
       children: data
     })
+    const childrenLengthSum = data.reduce((sum, item) => {
+      const children = item.children;
+      if (children && children.length > 0) {
+        return sum + children.length;
+      }
+      return sum;
+    }, 0);
+    console.log(childrenLengthSum);
+
   }, []);
 
   return <svg ref={svgRef}></svg>;
